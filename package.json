@@ -1,0 +1,27 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "a simple To Do app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jokkeuh/To-Do.git"
+  },
+  "keywords": [
+    "To",
+    "Do",
+    "list"
+  ],
+  "author": "Joren Dom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jokkeuh/To-Do/issues"
+  },
+  "homepage": "https://github.com/Jokkeuh/To-Do#readme",
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
+  }
+}
