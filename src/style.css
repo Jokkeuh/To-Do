@@ -1,0 +1,54 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 4fr 15fr;
+    border: 1px solid black;
+    background-color: grey;
+    width: 100%;
+    height: 100vh
+}
+.header {
+    
+    border: 1px solid rgb(161, 41, 41);
+    height: 15vh;
+    width: 100%;
+    
+
+}
+
+.sidebar{
+   
+    border: 1px solid rgb(255, 174, 0);
+    grid-row-start: 1;
+    grid-column-start: 1;
+    height: 100vh;
+    
+    
+    
+
+}
+
+.contentContainer{
+    position: absolute;
+    border: 1px solid rgb(50, 14, 177);
+    width: 80%;
+    height: 80%;
+    top: 18vh;
+    left: 18%;
+}
+
+.createNewListItem{
+    border: 1px solid blue;
+    width: 25rem;
+    height: 13rem;
+}
+
+.deleteBtn{
+    width: 1rem;
+    height: 1rem;
+
+}
+
+.activeList{
+    color: red;
+}
