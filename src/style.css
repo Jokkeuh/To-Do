@@ -31,10 +31,31 @@
 .contentContainer{
     position: absolute;
     border: 1px solid rgb(50, 14, 177);
-    width: 80%;
+    width: 75%;
     height: 80%;
     top: 18vh;
-    left: 18%;
+    left: 23%;
+}
+
+.memoBox{
+    justify-content: center;
+    border: 1px solid black;
+    height: 15vh;
+    max-height: 80vh;
+    width: 33%;
+}
+
+.memoText{
+    margin-top: 3%;
+    margin-left: 5%;
+    background-color: rgba(255, 255, 255, 0.192);
+}
+.memoBtn{
+    position: relative;
+    left: -20px;
+    height: 20px;
+    top: 2px;
+    border-radius: 15px;
 }
 
 .createNewListItem{
@@ -43,12 +64,31 @@
     height: 13rem;
 }
 
+ul{
+    list-style: none;
+}
+
+
 .deleteBtn{
-    width: 1rem;
-    height: 1rem;
+    
+    
+    display: none;
 
 }
 
 .activeList{
     color: red;
+}
+
+.addItemBtn{
+    
+}
+
+
+.activeList > button{
+    display: flex;
+    float: left;
+    background-color:red;
+    height: 1rem;
+    border-radius: 5px;
 }

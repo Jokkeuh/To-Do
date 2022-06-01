@@ -1,37 +1,68 @@
 import "./style.css"
 
 const listsContainer = document.querySelector("[data-lists]")
-const listTitles = document.querySelector("[data-listTitle]")
+const contentContainer = document.getElementById("contentContainer")
+
+const memoDisplayContainer = document.querySelector("[data-list-memo-container]")
+const listTitle= document.querySelector("[data-list-title]")
+const tasksContainer = document.querySelector("[data-tasks]")
+
+
+
+
+
+
 
 const newListForm = document.querySelector("[data-new-list-form]")
 const newListInput = document.querySelector("[data-new-list-input]")
-const activeListTitle = document.getElementById("activeListTitle")
+const activeListTitle = document.getElementsByClassName("activeList")
+console.log(activeListTitle)
+
+const sideBarContainer = document.getElementById("sidebar")
+
 
 
 const LOCAL_STORAGE_LIST_KEY = "task.lists"
 const LOCAL_STORAGE_LIST_ACTIVE = "task.activeList"
+
 let lists = []
 lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
 let activeList = localStorage.getItem(LOCAL_STORAGE_LIST_ACTIVE)
 
-listsContainer.addEventListener("click", e => {
+
+
+contentContainer.addEventListener("click", e => {
+    if(e.target.tagName.toLowerCase() === "button"){
+        const output = document.getElementById("memoTextOutput")
+        console.log("click")
+        output.innerText = 'TEST'
+
+    }
+})
+
+
+sideBarContainer.addEventListener("click", e => {
+    console.log(e)
     if(e.target.tagName.toLowerCase() === "li"){
         activeList = e.target.dataset.listId
         console.log(activeList)
         save()
-        addListItem()
+        Display()
         //setActivePageContent()
+        console.log(activeListTitle)
     }
 })
-listsContainer.addEventListener("click", e =>{
-    if(e.target.tagName.toLowerCase() === "button"){
+
+sideBarContainer.addEventListener("click", e =>{
+    if(e.target.tagName.toLowerCase() === "button" && e.target.id !== "addItemBtn"){
         lists = lists.filter(list => list.id !== activeList)
         activeList = null
         save()
-        addListItem()
+        Display()
     }
     
 })
+
 
 newListForm.addEventListener("submit", e => {
     e.preventDefault()
@@ -44,7 +75,7 @@ newListForm.addEventListener("submit", e => {
     const list = createList(listName)
     newListInput.value = null
     lists.push(list)
-    addListItem()
+    Display()
     save()
 })
 
@@ -57,7 +88,7 @@ const createList = (name) => {
 }
 
 const setActivePageContent = () => {
-    
+
 }
 
 
@@ -65,9 +96,23 @@ const save = () => {
     localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
 }
 
-const addListItem =()=>{
+const Display =()=>{
     clearElement(listsContainer)
-    
+    displayList()
+
+    const selectedList = lists.find(list => list.id === activeList)
+    if(activeList == null){
+        memoDisplayContainer.style.display ="none"
+        
+    }else{
+        memoDisplayContainer.style.display =""
+        listTitle.innerText = selectedList.name
+
+    }
+}
+
+const displayList =()=> {
+
     lists.forEach(list =>{
         const listElement = document.createElement("li")
         const deleteBtn = document.createElement("button")
@@ -75,14 +120,16 @@ const addListItem =()=>{
         listElement.dataset.listId = list.id
         listElement.classList.add("listItems")
         listElement.innerText = list.name
+        listElement.appendChild(deleteBtn)
+
         
         if (list.id == activeList) {
             listElement.classList.add("activeList")
         }
         listsContainer.appendChild(listElement)
-        listElement.appendChild(deleteBtn)
+        
     })
-    
+
 }
 
 const clearElement = (element) => {
@@ -93,4 +140,4 @@ const clearElement = (element) => {
 
 
 
-addListItem()
+Display()
