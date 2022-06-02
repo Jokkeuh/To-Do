@@ -22,9 +22,6 @@
     grid-row-start: 1;
     grid-column-start: 1;
     height: 100vh;
-    
-    
-    
 
 }
 
@@ -32,22 +29,48 @@
 
 
 .memoBox{
+    text-align: center;
     border: 1px solid black;
     position: absolute;
     border: 1px solid rgb(50, 14, 177);
-    width: 75%;
-    height: 80%;
-    top: 18vh;
-    left: 23%;
+    width: 100%;
+    max-height: 75vh;
+    overflow-y: scroll;
+    
    
 }
 
+.contentContainer{
+    position: absolute;
+    top: 10rem;
+    left:19rem;
+    width: 40%;
+    max-height: 80%;
+
+}
+.task{
+    display: grid;
+    border-top: 1px solid rgba(24, 20, 20, 0.479);
+    
+    display: flex;
+   
+}
+.checkBox{
+    width: 10%;
+}
+
 .memoText{
+    
     margin-top: 3%;
     margin-left: 1rem;
     
     width: 80%;
+    
     background-color: rgba(255, 255, 255, 0.192);
+}
+label{
+    font-size: xx-large;
+    
 }
 .listContent{
     
@@ -58,8 +81,11 @@
 }
 .taskCount{
     position: absolute;
-    left: 30%;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
 }
+
 .addTaskBtn{
     position: relative;
     left: -20px;
@@ -78,12 +104,8 @@ ul{
     list-style: none;
 }
 
-
-.deleteBtn{
-    
-    
-    display: none;
-
+.clearTask{
+    margin-top: 10%;
 }
 
 .activeList{

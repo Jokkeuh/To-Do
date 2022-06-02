@@ -11,7 +11,10 @@
 <body>
     <div id="container" class="container" >
         <div id="header" class="header">HEAD
-            <div id="headerContainer" class="headerContainer">headerContainerPlaceholder</div>
+            <div id="headerContainer" class="headerContainer">
+                <h2 id="headerTitle"  class="headerTitle" data-header-title  ></h2>
+               
+            </div>
         </div>
         <div id="sidebar" class="sidebar">SIDE
             <div id="listContainer" class="listContainer">
@@ -36,22 +39,28 @@
         <div id="contentContainer" class ="contentContainer">BODY
             <div id="listContent" class="listContent">
                 <div class="memoBox" data-list-memo-container>
-                    <div class = "inputContainer" data-new-list-title>
+                    <div class = "inputContainer" >
                         <form action="" data-new-task-form>
                             <h1 data-list-title></h1>
+                            <div id="taskCount" class="taskCount" data-task-count>0/0</div>
+                            
+                            
                             
                             <input type="text" class="newTask" placeholder="new task name" data-new-task-input>
                             
                             <button class="addTaskBtn"></button>
                         </form>
                         <div class="tasks" data-tasks>
-                            <div class="task" data-task>DATA TASK</div>
-                        </div>
-                        </div>
                             
+                        </div>
+                        </div>
+                        <div>
+                            
+                        </div>
+                        <button class="clearTask" data-clear-task-button>Remove completed Tasks</button>
+
                     
                 </div>
-                
             </div>
         </div>
     </div>
@@ -59,9 +68,9 @@
 
         <div class="tasks" >
             <div class="task">
-              <input type="checkbox"/>
+              <input type="checkbox" data-clear-task-button></div>
               <label>
-                <span class="custom-checkbox"></span> 
+                <span class="custom-checkbox" ></span> 
               </label>
             </div>
     </template>

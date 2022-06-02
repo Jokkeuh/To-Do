@@ -1,30 +1,23 @@
 import "./style.css"
 
-const listsContainer = document.querySelector("[data-lists]")
-const contentContainer = document.getElementById("contentContainer")
+const headerTitle = document.querySelector("[data-header-title]")
+        headerTitle.innerText = "Tell me what you want to do!"
 
+
+const listsContainer = document.querySelector("[data-lists]")
 const memoDisplayContainer = document.querySelector("[data-list-memo-container]")
 const listTitle= document.querySelector("[data-list-title]")
 const tasksCount = document.querySelector("[data-task-count]")
 const tasksContainer = document.querySelector("[data-tasks]")
 const taskTemplate = document.getElementById("task-template")
-
-
-
-
-
-
-
 const newListForm = document.querySelector("[data-new-list-form]")
 const newListInput = document.querySelector("[data-new-list-input]")
-
 const newTaskForm = document.querySelector("[data-new-task-form]")
 const newTaskInput = document.querySelector("[data-new-task-input")
-
 const activeListTitle = document.getElementsByClassName("activeList")
-
-
 const sideBarContainer = document.getElementById("sidebar")
+const clearButton = document.querySelector("[data-clear-task-button]")
+
 
 
 
@@ -60,6 +53,20 @@ sideBarContainer.addEventListener("click", e =>{
     
 })
 
+memoDisplayContainer.addEventListener("click", e =>{
+    if(e.target.tagName.toLowerCase() === "input") {
+        const selectedList = lists.find(list => list.id === activeList)
+        
+        const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
+        console.log(selectedTask)
+        selectedTask.complete = e.target.checked
+        DisplayAndSave()
+        
+
+    }
+})
+
+
 
 newListForm.addEventListener("submit", e => {
     e.preventDefault()
@@ -83,7 +90,7 @@ newTaskForm.addEventListener("submit", e  => {
     if(taskName === null || taskName === ""){
         return
     }
-    
+
     const task = createTask(taskName)
     newTaskInput.value = null
     const selectedList = lists.find(list => list.id === activeList)
@@ -94,6 +101,12 @@ newTaskForm.addEventListener("submit", e  => {
 })
 
 
+clearButton.addEventListener("click", e=>{
+       const selectedList = lists.find(list => list.id === activeList)
+       console.log(selectedList.tasks)
+       selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
+       DisplayAndSave()
+})
 
 
 
@@ -131,6 +144,7 @@ const Display =()=>{
         
         console.log(selectedList)
         
+        displayTaskCount(selectedList)
         clearElement(tasksContainer)
         displayTasks(selectedList)
         
@@ -144,19 +158,11 @@ const Display =()=>{
 
 
 
-
-/*const displayTaskCount=(selectedList)=> {
-    displayTasks()
-    console.log(selectedList)
-    
+function displayTaskCount (selectedList){
     const incompleteTaskCount = selectedList.tasks.filter(task => !task.complete).length
-    
-    
-
     const taskString = incompleteTaskCount === 1 ? "task" : "tasks"
-
     tasksCount.innerText = `${incompleteTaskCount} ${taskString} remaining`
-  }*/
+  }
 
 
     
@@ -187,12 +193,15 @@ const displayTasks = (selectedList) => {
     selectedList.tasks.forEach(task => {
         const TaskElement = document.importNode(taskTemplate.content, true)
         const checkBox = TaskElement.querySelector("input")
+        const deleteBtn = document.createElement("button")
+              deleteBtn.setAttribute("class", "deleteBtnTask")
         checkBox.id = task.id
         checkBox.checked = task.complete
         const label = TaskElement.querySelector("label")
         label.htmlFor = task.id
         label.append(task.name)
         tasksContainer.appendChild(TaskElement)
+       // label.appendChild(deleteBtn)
     } )
 }
 
