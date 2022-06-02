@@ -28,29 +28,39 @@
 
 }
 
-.contentContainer{
+
+
+
+.memoBox{
+    border: 1px solid black;
     position: absolute;
     border: 1px solid rgb(50, 14, 177);
     width: 75%;
     height: 80%;
     top: 18vh;
     left: 23%;
-}
-
-.memoBox{
-    justify-content: center;
-    border: 1px solid black;
-    height: 15vh;
-    max-height: 80vh;
-    width: 33%;
+   
 }
 
 .memoText{
     margin-top: 3%;
-    margin-left: 5%;
+    margin-left: 1rem;
+    
+    width: 80%;
     background-color: rgba(255, 255, 255, 0.192);
 }
-.memoBtn{
+.listContent{
+    
+    margin: 15px;
+    height: 15vh;
+    max-height: 80vh;
+    width: 33%;
+}
+.taskCount{
+    position: absolute;
+    left: 30%;
+}
+.addTaskBtn{
     position: relative;
     left: -20px;
     height: 20px;

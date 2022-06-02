@@ -20,6 +20,8 @@
                     
                 
                 <input type="text" name="inputListTitle" id="inputListTitle" class="inputListTitle" data-new-list-input>
+                <div data-new-list-title>
+
                 <button type="submit" id="addItemBtn" class="addItemBtn" data-addBtn >+</button>
                 
                 </form>
@@ -34,16 +36,17 @@
         <div id="contentContainer" class ="contentContainer">BODY
             <div id="listContent" class="listContent">
                 <div class="memoBox" data-list-memo-container>
-                    <div class = "inputContainer" >
-                        <div id="memoTitle" class="memotitle" data-list-title></div>
-
-
-                        <input type="text" id="memoTextInput" class="memoText">
-                        <button type="button" id="memoBtn" class="memoBtn"></button>
-                        <div id="memoTextOutput" class="memoText"></div>
-
-                        <div id="tasksContainer" class="tasksContainer">
-                                    <div id="tasks" class="tasks" data-tasks>
+                    <div class = "inputContainer" data-new-list-title>
+                        <form action="" data-new-task-form>
+                            <h1 data-list-title></h1>
+                            
+                            <input type="text" class="newTask" placeholder="new task name" data-new-task-input>
+                            
+                            <button class="addTaskBtn"></button>
+                        </form>
+                        <div class="tasks" data-tasks>
+                            <div class="task" data-task>DATA TASK</div>
+                        </div>
                         </div>
                             
                     
@@ -52,6 +55,16 @@
             </div>
         </div>
     </div>
+    <template id="task-template">
+
+        <div class="tasks" >
+            <div class="task">
+              <input type="checkbox"/>
+              <label>
+                <span class="custom-checkbox"></span> 
+              </label>
+            </div>
+    </template>
     
 </body>
 </html>
