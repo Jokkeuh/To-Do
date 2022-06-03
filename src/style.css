@@ -1,19 +1,61 @@
+
+@font-face {
+    font-family: fontHead;
+    src: url(./fonts/FontHead.ttf);
+}
+@font-face {
+    font-family:fontTask ;
+    src: url(./fonts/fontTask.ttf);
+}
+@font-face {
+    font-family: fontTask2 ;
+    src: url(./fonts/fontTask2.ttf);
+}
+
+
+* {
+    margin: 0;
+    font-family: fontTask2;
+}
+
 .container{
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 2fr 5fr;
     grid-template-rows: 4fr 15fr;
     border: 1px solid black;
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.116);
     width: 100%;
     height: 100vh
 }
+
+
+.newTask{
+    font-family: fontTask;
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0.082);
+    border-style: none;
+    width: 75%;
+}
+
+.newTask::placeholder{
+    color: rgba(0, 0, 0, 0.589);
+}
+
+.deleteBtn{
+    display: none;
+}
 .header {
     
-    border: 1px solid rgb(161, 41, 41);
+    
     height: 15vh;
     width: 100%;
     
+}
 
+.headerTitle {
+    text-align: center;
+    font-size: 65px;
+    
 }
 
 .sidebar{
@@ -22,8 +64,25 @@
     grid-row-start: 1;
     grid-column-start: 1;
     height: 100vh;
-
+    font-size: 35px;
+    margin-right: 25px;
 }
+
+.inputListTitle{
+    
+    font-size: 24px;
+    
+    border-style: none;
+    justify-self: center;
+    margin-left: 25px;
+    width: 75%;
+    background-color: rgba(240, 248, 255, 0.021);
+    border-bottom: 1px solid black;
+}
+.inputListTitle::placeholder{
+    color: rgba(0, 0, 0, 0.452);
+}
+
 
 
 
@@ -35,18 +94,17 @@
     border: 1px solid rgb(50, 14, 177);
     width: 100%;
     max-height: 75vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     
    
 }
 
 .contentContainer{
-    position: absolute;
+    position: fixed;
+    left: 25rem;
     top: 10rem;
-    left:19rem;
-    width: 40%;
-    max-height: 80%;
-
+    width: 40rem;
+  
 }
 .task{
     display: grid;
@@ -69,7 +127,8 @@
     background-color: rgba(255, 255, 255, 0.192);
 }
 label{
-    font-size: xx-large;
+    font-size: 30px;
+    font-family: fontTask;
     
 }
 .listContent{
@@ -83,14 +142,19 @@ label{
     position: absolute;
     left: 0;
     bottom: 0;
-    z-index: 1;
+    font-size: 25px;
 }
 
 .addTaskBtn{
-    position: relative;
-    left: -20px;
-    height: 20px;
+    position: absolute;
+    border-style: none;
     top: 2px;
+    
+
+}
+
+.addItemBtn{
+    margin-left: 25px;
     border-radius: 15px;
 }
 
@@ -106,21 +170,23 @@ ul{
 
 .clearTask{
     margin-top: 10%;
+    color: black;
+    font-size: 30px;
 }
 
 .activeList{
-    color: red;
-}
-
-.addItemBtn{
     
+    border-bottom: 3px solid rgb(8, 0, 0);
 }
 
 
 .activeList > button{
     display: flex;
+    position: relative;
     float: left;
-    background-color:red;
+    bottom: -12px;
+    
+    background-color:rgba(15, 9, 43, 0.596);
     height: 1rem;
     border-radius: 5px;
 }

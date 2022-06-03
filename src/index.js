@@ -1,7 +1,8 @@
 import "./style.css"
+import "."
 
 const headerTitle = document.querySelector("[data-header-title]")
-        headerTitle.innerText = "Tell me what you want to do!"
+        headerTitle.innerText = "To-Do  To-Day"
 
 
 const listsContainer = document.querySelector("[data-lists]")
@@ -37,10 +38,9 @@ sideBarContainer.addEventListener("click", e => {
     console.log(e)
     if(e.target.tagName.toLowerCase() === "li"){
         activeList = e.target.dataset.listId
-        console.log(activeList)
+        
         DisplayAndSave()
-        //setActivePageContent()
-        console.log(activeListTitle)
+        
     }
 })
 
@@ -201,7 +201,7 @@ const displayTasks = (selectedList) => {
         label.htmlFor = task.id
         label.append(task.name)
         tasksContainer.appendChild(TaskElement)
-       // label.appendChild(deleteBtn)
+       
     } )
 }
 

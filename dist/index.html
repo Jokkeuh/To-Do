@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ToDo ToDay</title>
     <script src="main.js" defer></script>
     
 </head>
 <body>
     <div id="container" class="container" >
-        <div id="header" class="header">HEAD
+        <div id="header" class="header">
             <div id="headerContainer" class="headerContainer">
                 <h2 id="headerTitle"  class="headerTitle" data-header-title  ></h2>
                
             </div>
         </div>
-        <div id="sidebar" class="sidebar">SIDE
+        <div id="sidebar" class="sidebar">
             <div id="listContainer" class="listContainer">
 
                 <form action="" data-new-list-form>
                     
                 
-                <input type="text" name="inputListTitle" id="inputListTitle" class="inputListTitle" data-new-list-input>
+                <input type="text" name="inputListTitle" id="inputListTitle" class="inputListTitle" placeholder="What do you want to do today" data-new-list-input>
                 <div data-new-list-title>
 
                 <button type="submit" id="addItemBtn" class="addItemBtn" data-addBtn >+</button>
@@ -36,15 +36,15 @@
              </ul>
             </div>
         </div>
-        <div id="contentContainer" class ="contentContainer">BODY
+        <div id="contentContainer" class ="contentContainer">
             <div id="listContent" class="listContent">
                 <div class="memoBox" data-list-memo-container>
                     <div class = "inputContainer" >
                         <form action="" data-new-task-form>
                             <h1 data-list-title></h1>
-                            <div id="taskCount" class="taskCount" data-task-count>0/0</div>
+                            <div id="taskCount" class="taskCount" data-task-count></div>
                             
-                            
+                             
                             
                             <input type="text" class="newTask" placeholder="new task name" data-new-task-input>
                             
