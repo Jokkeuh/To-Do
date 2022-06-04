@@ -68,6 +68,8 @@ memoDisplayContainer.addEventListener("click", e =>{
 
 
 
+
+
 newListForm.addEventListener("submit", e => {
     e.preventDefault()
     console.log(e)
@@ -98,6 +100,22 @@ newTaskForm.addEventListener("submit", e  => {
     selectedList.tasks.push(task)
     DisplayAndSave()
     
+})
+
+tasksContainer.addEventListener("click", e => {
+    const timeStamp = e.target.id
+    console.log(timeStamp)
+    let date = parseInt(timeStamp)
+    console.log(timeStamp)
+            
+    const dateAdded = new Date(date);
+        console.log(dateAdded)
+    const dateAddedDiv = document.createElement("div")
+    dateAddedDiv.setAttribute("class","dateAddedDiv")
+    
+    tasksContainer.appendChild(dateAddedDiv)
+    dateAddedDiv.innerHTML = dateAdded
+   
 })
 
 

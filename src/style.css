@@ -36,6 +36,9 @@
     border-style: none;
     width: 75%;
 }
+.tasks input {
+    /*display: none;*/
+}
 
 .newTask::placeholder{
     color: rgba(0, 0, 0, 0.589);
