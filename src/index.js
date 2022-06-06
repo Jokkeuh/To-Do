@@ -1,6 +1,8 @@
 import "./style.css"
 import "."
 
+import { format, endOfDay } from "date-fns"
+
 const headerTitle = document.querySelector("[data-header-title]")
         headerTitle.innerText = "To-Do  To-Day"
 
@@ -15,19 +17,28 @@ const newListForm = document.querySelector("[data-new-list-form]")
 const newListInput = document.querySelector("[data-new-list-input]")
 const newTaskForm = document.querySelector("[data-new-task-form]")
 const newTaskInput = document.querySelector("[data-new-task-input")
-const activeListTitle = document.getElementsByClassName("activeList")
 const sideBarContainer = document.getElementById("sidebar")
 const clearButton = document.querySelector("[data-clear-task-button]")
 
 
 
 
+
+
 const LOCAL_STORAGE_LIST_KEY = "task.lists"
 const LOCAL_STORAGE_LIST_ACTIVE = "task.activeList"
+const LOCAL_STORAGE_LIST_ACTIVE_TASK = "task.activeTask"
 
 let lists = []
     lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
 let activeList = localStorage.getItem(LOCAL_STORAGE_LIST_ACTIVE)
+let activeTask = localStorage.getItem(LOCAL_STORAGE_LIST_ACTIVE_TASK)
+
+
+
+
+
+
 
 
 
@@ -35,7 +46,7 @@ let activeList = localStorage.getItem(LOCAL_STORAGE_LIST_ACTIVE)
 
 
 sideBarContainer.addEventListener("click", e => {
-    console.log(e)
+    
     if(e.target.tagName.toLowerCase() === "li"){
         activeList = e.target.dataset.listId
         
@@ -54,17 +65,39 @@ sideBarContainer.addEventListener("click", e =>{
 })
 
 memoDisplayContainer.addEventListener("click", e =>{
-    if(e.target.tagName.toLowerCase() === "input") {
+    if(e.target.tagName.toLowerCase() === "input" ) {
         const selectedList = lists.find(list => list.id === activeList)
         
         const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
-        console.log(selectedTask)
+        
         selectedTask.complete = e.target.checked
-        DisplayAndSave()
+        selectedTask.timeCompleted = format(new Date(), "yyyy-MM-dd HH:mm")
+        console.log(selectedTask)
         
 
+
+        DisplayAndSave()
+        
     }
 })
+//time table
+ memoDisplayContainer.addEventListener("click", e => {
+
+    if(e.target.tagName.toLowerCase() === "button"){
+        const selectedList = lists.find(list => list.id === activeList)
+        const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
+
+        const timeAdded = selectedTask.time;
+        const timeDone = selectedTask.timeCompleted;
+        console.log(timeAdded, timeDone)
+        confirm(` Created on: ${timeAdded}, \n  Completed at: ${timeDone}`)
+       
+        DisplayAndSave()
+
+    }
+
+})
+  
 
 
 
@@ -102,29 +135,40 @@ newTaskForm.addEventListener("submit", e  => {
     
 })
 
-tasksContainer.addEventListener("click", e => {
+
+
+
+/* tasksContainer.addEventListener("click", e => {
     const timeStamp = e.target.id
-    console.log(timeStamp)
-    let date = parseInt(timeStamp)
-    console.log(timeStamp)
-            
-    const dateAdded = new Date(date);
-        console.log(dateAdded)
-    const dateAddedDiv = document.createElement("div")
-    dateAddedDiv.setAttribute("class","dateAddedDiv")
     
-    tasksContainer.appendChild(dateAddedDiv)
-    dateAddedDiv.innerHTML = dateAdded
-   
+    let finished = format(endOfDay(new Date()), "yyyy-MM-dd HH:mm")
+    
+    let date = parseInt(timeStamp)
+    const dateAdded = new Date(date);
+        
+
+        console.log(finished, dateAdded)
+
+
+    DisplayAndSave()
 })
+
+*/
+
+
 
 
 clearButton.addEventListener("click", e=>{
        const selectedList = lists.find(list => list.id === activeList)
        console.log(selectedList.tasks)
        selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
+       
        DisplayAndSave()
 })
+
+
+
+
 
 
 
@@ -132,8 +176,14 @@ const createList = (name) => {
     return {id: Date.now().toString(), name: name, tasks: []}
 }
 
-const createTask = (name) =>{
-    return { id: Date.now().toString(), name: name, complete: false}
+const createTask = (name, timeCompleted) =>{
+    return { id: Date.now().toString(),
+            name: name, 
+            complete: false, 
+            time: format(new Date(), "yyyy-MM-dd HH:mm"),
+            timeCompleted : timeCompleted
+            
+         }
 }
 
 function DisplayAndSave(){
@@ -160,7 +210,7 @@ const Display =()=>{
         memoDisplayContainer.style.display =""
         listTitle.innerText = selectedList.name
         
-        console.log(selectedList)
+        
         
         displayTaskCount(selectedList)
         clearElement(tasksContainer)
@@ -168,6 +218,7 @@ const Display =()=>{
         
 
     }
+    
     
 }
 
@@ -211,17 +262,22 @@ const displayTasks = (selectedList) => {
     selectedList.tasks.forEach(task => {
         const TaskElement = document.importNode(taskTemplate.content, true)
         const checkBox = TaskElement.querySelector("input")
-        const deleteBtn = document.createElement("button")
-              deleteBtn.setAttribute("class", "deleteBtnTask")
+        const expandBtn = TaskElement.querySelector("button")
         checkBox.id = task.id
         checkBox.checked = task.complete
+        expandBtn.id = task.id
         const label = TaskElement.querySelector("label")
         label.htmlFor = task.id
         label.append(task.name)
         tasksContainer.appendChild(TaskElement)
+        TaskElement.appendChild(taskExpand)
+        
+        
+        
        
     } )
 }
+
 
 const clearElement = (element) => {
     while(element.firstChild){

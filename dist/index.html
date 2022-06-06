@@ -50,13 +50,7 @@
                             
                             <button class="addTaskBtn"></button>
                         </form>
-                        <div class="tasks" data-tasks>
-                            
-                        </div>
-                        </div>
-                        <div>
-                            
-                        </div>
+                        <div class="tasks" data-tasks></div>
                         <button class="clearTask" data-clear-task-button>Remove completed Tasks</button>
 
                     
@@ -67,11 +61,18 @@
     <template id="task-template">
 
         <div class="tasks" >
+            
             <div class="task">
-              <input type="checkbox" data-clear-task-button></div>
+              <input type="checkbox" data-clear-task-button>
               <label>
-                <span class="custom-checkbox" ></span> 
+                
               </label>
+              
+              <div  id="taskExpand" data-task-expand>
+               
+              </div>
+               <button type="button" data-task-expand-btn class="taskExpand" > ?* </button>
+              
             </div>
     </template>
     

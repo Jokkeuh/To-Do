@@ -40,6 +40,11 @@
     /*display: none;*/
 }
 
+.taskExpand{
+    width: 50px;
+    height: 50px;
+}
+
 .newTask::placeholder{
     color: rgba(0, 0, 0, 0.589);
 }
@@ -116,7 +121,10 @@
     border-top: 1px solid rgba(24, 20, 20, 0.479);
     
     display: flex;
-   
+}
+.task > input{
+   position: absolute;
+   right: 1rem;
 }
 .checkBox{
     width: 10%;
@@ -134,6 +142,8 @@
 label{
     font-size: 30px;
     font-family: fontTask;
+    cursor:default;
+    
     
 }
 .listContent{
